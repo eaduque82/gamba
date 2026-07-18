@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Brand palette ---- */
+  --color-carbon-950: #0a0a0a;
+  --color-carbon-900: #121212;
+  --color-carbon-800: #1a1a1a;
+  --color-carbon-700: #232323;
+  --color-carbon-600: #2e2e2e;
+
+  --color-gold-500: #d4a034;
+  --color-gold-400: #f2c14e;
+  --color-gold-300: #f7d67f;
+
+  --color-steel-400: #9ca3af;
+  --color-steel-300: #b7bec8;
+  --color-steel-600: #6b7280;
+
+  --color-white: #ffffff;
+
+  /* ---- Type ---- */
+  --font-display: var(--font-oswald), "Arial Narrow", sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-tag: var(--font-jetbrains), monospace;
+
+  /* ---- Motion ---- */
+  --ease-industrial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-carbon-950);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: var(--color-carbon-950);
+}
+
+/* Focus visibility kept intentional, not suppressed */
+:focus-visible {
+  outline: 2px solid var(--color-gold-400);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------
+   Signature element: the "seam" — a stitched gold line
+   used as a structural divider, echoing a double-needle
+   stitch on workwear seams.
+--------------------------------------------------- */
+.seam {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-gold-500) 0px,
+    var(--color-gold-500) 10px,
+    transparent 10px,
+    transparent 18px
+  );
+  opacity: 0.55;
+}
+
+.seam::before,
+.seam::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: inherit;
+  opacity: 0.55;
+}
+.seam::before {
+  top: -5px;
+}
+.seam::after {
+  top: 5px;
+}
+
+.seam-vertical {
+  position: relative;
+  width: 1px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--color-gold-500) 0px,
+    var(--color-gold-500) 10px,
+    transparent 10px,
+    transparent 18px
+  );
+  opacity: 0.5;
+}
+
+/* Tailored cut corner — recurring geometric device */
+.cut-corner {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%);
+}
+.cut-corner-lg {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 56px), calc(100% - 56px) 100%, 0 100%);
+}
+.cut-corner-sm {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+}
+
+.tag-label {
+  font-family: var(--font-tag);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.text-outline-gold {
+  -webkit-text-stroke: 1px var(--color-gold-400);
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
